@@ -4,6 +4,7 @@ if(!session_is_registered(id)){
 header("location:index.php");
 }
 ?>
+// This is a test edit 
 <!DOCTYPE html> 
 <html>
 <head>
