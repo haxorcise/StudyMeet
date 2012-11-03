@@ -1,12 +1,6 @@
-<?php
-session_start();
-if(!session_is_registered(id)){
-header("location:index.php");
-}
-?>
-// This is a test edit 
 <!DOCTYPE html> 
 <html>
+
 <head>
 	<title>StudyMeet</title> 
 	<meta charset="utf-8">
@@ -29,35 +23,21 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
 		<h1>StudyMeet</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>Here are your available assignments:</p>	
-		
-		<?php 
-		include("config.php");
-		$id = $_SESSION['id'];
-		
-		$query = "SELECT * FROM users WHERE Id = '$id'";
-		$result = mysql_query($query);
-		
-		while ($row = mysql_fetch_assoc($result)) {
-			echo $row["email"];
-			//$redirect = 'assignments.php?Class='.$row["Class"];
-			//echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-		}
-
-		?>
-		
+		<p>Here are your available assignments for CS147:</p>	
+		<p><a href="assignment1.php" data-role="button" data-theme="b">Assignment #1</a></p>	
+		<p><a href="#" data-role="button" data-theme="b">Assignment #2</a></p>	
+		<p><a href="#" data-role="button" data-theme="b">Assignment #3</a></p>	
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="profile.php" id="key" data-icon="custom">Profile</a></li>
+				<li><a href="classes.php" id="key" data-icon="custom">Profile</a></li>
 			</ul>
 		</div>
 	</div>
