@@ -1,11 +1,11 @@
-<!DOCTYPE html> 
-<html>
 <?php
 session_start();
-if(!session_is_registered(myusername)){
-header("location:main_login.php");
+if(!session_is_registered(id)){
+header("location:index.php");
 }
 ?>
+<!DOCTYPE html> 
+<html>
 <head>
 	<title>StudyMeet</title> 
 	<meta charset="utf-8">
@@ -28,13 +28,18 @@ header("location:main_login.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
+		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
 		<h1>StudyMeet</h1>
-		<a href="logout.php" data-icon="back" id="logout" class="ui-btn-right">logout</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
 		<p>Here are your available classes:</p>	
+		<?php 
+		echo $_SESSION['username'];
+		echo $_SESSION['password'];
+		echo $_SESSION['id'];
+		?>
 		<a href="assignment_categories.php" data-role="button" data-theme="b">CS 147</a></p>	
 		
 	</div><!-- /content -->

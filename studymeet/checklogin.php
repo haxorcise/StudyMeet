@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(session_is_registered(username)){
+header('Location:classes.php');
+}
+?>
 <!DOCTYPE html> 
 <html>
 <head>
@@ -19,7 +25,7 @@
 <div data-role="page">
 	<div data-role="header">
 		<h1>StudyMeet</h1>
-		<a href="index.php" data-icon="back" id="back-to-login" class="ui-btn-left">Login</a>
+		<a href="logout.php" data-icon="back" id="back-to-login" class="ui-btn-left">logout</a>
 	</div><!-- /header -->
 	<div data-role="content">	
 <?php
@@ -28,12 +34,16 @@ $username=$_POST['username'];
 $password=$_POST['password'];
 $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
 $result = mysql_query($query);
+	//the following code is grabbing the "id" value that corresponds username and password
+	$row = mysql_fetch_array($result);
+	$id = $row['Id'];
 //this tells you how many rows were returned
 $num_rows = mysql_num_rows($result);
 //echo $num_rows;
 if ($num_rows == 1) {
 	$_SESSION['username']=$username;
 	$_SESSION['password']=$password;
+	$_SESSION['id']=$id;
 	echo '<p>Congratulations! You are logged in.<p><a href="classes.php" data-role="button">Continue to Classes</a>';
 } else {
 	echo "<p>Wrong Username or Password</p>";

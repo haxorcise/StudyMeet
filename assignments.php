@@ -28,8 +28,9 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
+		<a href="classes.php" data-icon="back" id="back" class="ui-btn-left">Back</a>
 		<h1>StudyMeet</h1>
+		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	

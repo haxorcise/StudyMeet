@@ -47,24 +47,7 @@
 		<p>To log in, enter username <b>"test"</b> and password <b>"test"</b>. "This is just a demo page!</p>
 	</div>	
 	</div><!-- /content -->
-
-
-	<script type="text/javascript">
-	$("#logout").hide();
-	$("#info").show();
-	var retrievedObject = localStorage.getItem('username');
-	if (retrievedObject == "test") {
-		$("#form").hide();	
-		$("#logout").show();
-		$("#info").show();
-	}
-	$("#logout").click(function() {
-		localStorage.removeItem('username');
-		$("#form").show();
-		$("#logout").hide();
-		$("#info").hide();
-	});
-	</script>
+	
 </div><!-- /page -->
 </body>
 </html>

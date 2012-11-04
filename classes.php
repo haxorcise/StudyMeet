@@ -25,30 +25,35 @@ header("location:index.php");
 <body> 
 
 <!-- Start of first page: #one -->
-<div data-role="page" id="one" data-add-back-btn="true">
+<div data-role="page">
 
 	<div data-role="header">
-		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
 		<h1>StudyMeet</h1>
+		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
-	<div data-role="content">	
-		<h2>Find a Study Group!</h2>
-		<p>Here are your available classes:</p>	
-		<?php 				
+	<div data-role="content">
+	<?php
 		include("config.php");
 		$id = $_SESSION['id'];
 		$query = "SELECT * FROM Classes WHERE User_ID = '$id'";
 		$result = mysql_query($query);
-		//echo $result["Class"];
+		$num_rows = mysql_num_rows($result);
 		
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'assignments.php?Class='.$row["Class"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-		}
+		echo '<h2>Find a Study Group!</h2>';
 
+		if ($num_rows > 0) {
+			echo '<p>Here are your available classes:</p>';
+			while ($row = mysql_fetch_assoc($result)) {
+				$redirect = 'assignments.php?Class='.$row["Class"];
+				echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
+			}
+			echo "Want to add a class?<a href='addclass.php' data-role='button' data-theme='b'>Add A Class</a>";
+		} else {
+			echo "Want to add a class?";
+			echo '<p>You have not added any classes :(</p>';
+		}
 		?>
-		
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">

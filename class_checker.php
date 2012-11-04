@@ -1,26 +1,21 @@
 <?php
 session_start();
-if(session_is_registered(username)){
-header('Location:classes.php');
+if(!session_is_registered(id)){
+header('Location:index.php');
 } else {
 include('config.php');
-$username=$_POST['username'];
-$password=$_POST['password'];
-$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-$result = mysql_query($query);
-	//the following code is grabbing the "id" value that corresponds username and password
-	$row = mysql_fetch_array($result);
-	$id = $row['Id'];
-//this tells you how many rows were returned
-$num_rows = mysql_num_rows($result);
-//echo $num_rows;
-if ($num_rows == 1) {
-	$_SESSION['username']=$username;
-	$_SESSION['password']=$password;
-	$_SESSION['id']=$id;
-	$_SESSION['name']="name";
-	header('Location:classes.php');
-}
+$search=$_POST['search'];
+$query = "SELECT * FROM Main_Classes";
+$result = mysql_query($query);		
+	while ($row = mysql_fetch_assoc($result)){
+		$current=$row["Class"];
+		if ($current == $search){
+			$id=$_SESSION['id'];
+			mysql_query("INSERT INTO Classes VALUES ('$id', '$current')");
+			header('Location:classes.php');
+		}
+	}
+}	
 ?>
 <!DOCTYPE html> 
 <html>
@@ -42,14 +37,17 @@ if ($num_rows == 1) {
 <body> 
 <div data-role="page">
 	<div data-role="header">
+		<a href="classes.php" data-icon="back" data-icon="left" id="back" class="ui-btn-left">Back</a>
 		<h1>StudyMeet</h1>
 		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
+	
 	<div data-role="content">	
-<?php
-	echo "<p>Wrong Username or Password</p>";
-}	
-?>
+
+		<form action="class_checker.php" method="post">
+			    <label for="search-basic">Try Searching for a Class Again (Perhaps CS106A, CS106B, CS147?):</label>
+			    <input type="search" name="search" id="search" value="" />
+    	</form>
 	</div><!-- /content -->
 
 
