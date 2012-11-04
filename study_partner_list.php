@@ -4,6 +4,7 @@ if(!session_is_registered(id)){
 header("location:index.php");
 }
 ?>
+// This is a test edit 
 <!DOCTYPE html> 
 <html>
 <head>
@@ -22,48 +23,50 @@ header("location:index.php");
 	<script src="jquery.mobile-1.2.0.js"></script>
 
 </head>  
-<body> 
-
-<!-- Start of first page: #one -->
-<div data-role="page">
+<body> <!-- /contentstart -->
+<div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
+		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
 		<h1>StudyMeet</h1>
-		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
-	<div data-role="content">
-	<?php
+	<div data-role="content">	
+		<h2>Find a Study Group!</h2>
+		<p>These are your peers also working on this assignment!:</p>	
+		
+		<?php 
 		include("config.php");
 		$id = $_SESSION['id'];
-		$query = "SELECT * FROM Classes WHERE User_ID = '$id'";
-		$result = mysql_query($query);
-<<<<<<< HEAD
-		$num_rows = mysql_num_rows($result);
 		
-		echo '<h2>Find a Study Group!</h2>';
-=======
-		//echo $result["Class"];
-		//
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'assignments.php?Class='.$row["Class"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-		}
->>>>>>> ce7e0d5c87cfed12d9a9503db7372d876730f464
+		$query="SELECT * FROM users";
+			$result=mysql_query($query);
+			$num=mysql_numrows($result);
+		
+		//mysql_close();
 
-		if ($num_rows > 0) {
-			echo '<p>Here are your available classes:</p>';
-			while ($row = mysql_fetch_assoc($result)) {
-				$redirect = 'assignments.php?Class='.$row["Class"];
-				echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-			}
-			echo "Want to add a class?<a href='addclass.php' data-role='button' data-theme='b'>Add A Class</a>";
-		} else {
-			echo "Want to add a class?";
-			echo '<p>You have not added any classes :(</p>';
+		echo "<b><center>Available Study Partners</center></b><br><br>";
+		
+		$i=0;
+		while ($i < $num) {
+		
+		$first_name=mysql_result($result,$i,"first_name");
+		$last_name=mysql_result($result,$i,"last_name");
+		$res=mysql_result($result,$i,"res");
+		$id=mysql_result($result, $i, "Id");
+		
+		$redirect = 'profile.php?id='.$id;
+		echo "<a href='$redirect' data-role='button' data-theme='b'> send message</a></p>";
+		echo "<b>$first_name 
+		$last_name</b><br>$res<br>50% done<hr><br>";
+		
+		
+		$i++;
 		}
 		?>
-	</div><!-- /content -->
+
+
+</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
 			<ul>

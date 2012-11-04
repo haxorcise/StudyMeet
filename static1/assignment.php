@@ -1,11 +1,6 @@
-<?php
-session_start();
-if(!session_is_registered(id)){
-header("location:index.php");
-}
-?>
 <!DOCTYPE html> 
 <html>
+
 <head>
 	<title>StudyMeet</title> 
 	<meta charset="utf-8">
@@ -28,39 +23,21 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="classes.php" data-icon="back" id="back" class="ui-btn-left">Back</a>
 		<h1>StudyMeet</h1>
-		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>Here are your available assignments:</p>	
-		
-		<?php 
-		$_SESSION['currclass'] = $_GET['Class'];
-		
-		include("config.php");
-		$currclass = $_SESSION['currclass'];
-		$query = "SELECT * FROM assignments WHERE Class = '$currclass'";
-		$result = mysql_query($query);
-		//echo $result["Class"];
-		
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'done.php?Assignment='.$row["Assignments"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Assignments"]."</a></p>";
-		}
-		
-		?>
-		
-		
+		<p>Here are your available assignments for CS147:</p>	
+		<p><a href="assignment1.php" data-role="button" data-theme="b">Assignment #1</a></p>	
+		<p><a href="#" data-role="button" data-theme="b">Assignment #2</a></p>	
+		<p><a href="#" data-role="button" data-theme="b">Assignment #3</a></p>	
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="profile.php" id="key" data-icon="custom" >Profile</a></li>
-				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
+				<li><a href="classes.php" id="key" data-icon="custom">Profile</a></li>
 			</ul>
 		</div>
 	</div>
