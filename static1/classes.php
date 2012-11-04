@@ -1,11 +1,6 @@
-<?php
-session_start();
-if(!session_is_registered(id)){
-header("location:index.php");
-}
-?>
 <!DOCTYPE html> 
 <html>
+
 <head>
 	<title>StudyMeet</title> 
 	<meta charset="utf-8">
@@ -28,33 +23,20 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
 		<h1>StudyMeet</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
 		<p>Here are your available classes:</p>	
-		<?php 				
-		include("config.php");
-		$id = $_SESSION['id'];
-		$query = "SELECT * FROM Classes WHERE User_ID = '$id'";
-		$result = mysql_query($query);
-		//echo $result["Class"];
-		//
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'assignments.php?Class='.$row["Class"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-		}
-
-		?>
+		<a href="assignment_categories.php" data-role="button" data-theme="b">CS 147</a></p>	
 		
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="profile.php" id="key" data-icon="custom">Profile</a></li>
+				<li><a href="classes.php" id="key" data-icon="custom">Profile</a></li>
 			</ul>
 		</div>
 	</div>
