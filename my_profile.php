@@ -4,6 +4,7 @@ if(!session_is_registered(id)){
 header("location:index.php");
 }
 ?>
+// This is a test edit 
 <!DOCTYPE html> 
 <html>
 <head>
@@ -34,31 +35,45 @@ header("location:index.php");
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>Here are your available assignments:</p>	
+		<p>This is your profile</p>	
 		
 		<?php 
-		$_SESSION['currclass'] = $_GET['Class'];
-		
 		include("config.php");
-		$currclass = $_SESSION['currclass'];
-		$query = "SELECT * FROM assignments WHERE Class = '$currclass'";
+		$id = $_SESSION['id'];
+		//$id = $_GET['id'];
+		$query = "SELECT * FROM users WHERE Id = '$id'";
 		$result = mysql_query($query);
-		//echo $result["Class"];
 		
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'done.php?Assignment='.$row["Assignments"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Assignments"]."</a></p>";
-		}
 		
+		
+		echo "<b><center>User Profile</center></b><br><br>";
+		
+		$first_name=mysql_result($result,$i,"first_name");
+		$last_name=mysql_result($result,$i,"last_name");
+		$gender=mysql_result($result,$i,"gender");
+		$year=mysql_result($result,$i,"year");
+		$major=mysql_result($result,$i,"major");
+		$res=mysql_result($result,$i,"res");
+		$email=mysql_result($result,$i,"email");
+		
+		echo "<b>$first_name 
+$last_name</b><br><hr>$gender<br>$year<br>$major<br>$res<br>$email<hr><br>";
+		
+		
+		//while ($row = mysql_fetch_assoc($result)) {
+			//echo $row["email"];
+			//$redirect = 'assignments.php?Class='.$row["Class"];
+			//echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
+		//}
+
 		?>
-		
 		
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="profile.php" id="key" data-icon="custom" >Profile</a></li>
+				<li><a href="my_profile.php" id="key" data-icon="custom" >Profile</a></li>
 				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>

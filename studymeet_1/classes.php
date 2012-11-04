@@ -34,32 +34,20 @@ header("location:index.php");
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>Here are your available assignments:</p>	
-		
+		<p>Here are your available classes:</p>	
 		<?php 
-		$_SESSION['currclass'] = $_GET['Class'];
-		
-		include("config.php");
-		$currclass = $_SESSION['currclass'];
-		$query = "SELECT * FROM assignments WHERE Class = '$currclass'";
-		$result = mysql_query($query);
-		//echo $result["Class"];
-		
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'done.php?Assignment='.$row["Assignments"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Assignments"]."</a></p>";
-		}
-		
+		echo $_SESSION['username'];
+		echo $_SESSION['password'];
+		echo $_SESSION['id'];
 		?>
-		
+		<a href="assignment_categories.php" data-role="button" data-theme="b">CS 147</a></p>	
 		
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="profile.php" id="key" data-icon="custom" >Profile</a></li>
-				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
+				<li><a href="classes.php" id="key" data-icon="custom">Profile</a></li>
 			</ul>
 		</div>
 	</div>

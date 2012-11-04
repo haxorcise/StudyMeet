@@ -4,8 +4,10 @@ if(!session_is_registered(id)){
 header("location:index.php");
 }
 ?>
+
 <!DOCTYPE html> 
 <html>
+
 <head>
 	<title>StudyMeet</title> 
 	<meta charset="utf-8">
@@ -34,25 +36,10 @@ header("location:index.php");
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>Here are your available assignments:</p>	
-		
-		<?php 
-		$_SESSION['currclass'] = $_GET['Class'];
-		
-		include("config.php");
-		$currclass = $_SESSION['currclass'];
-		$query = "SELECT * FROM assignments WHERE Class = '$currclass'";
-		$result = mysql_query($query);
-		//echo $result["Class"];
-		
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'done.php?Assignment='.$row["Assignments"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Assignments"]."</a></p>";
-		}
-		
-		?>
-		
-		
+		<p></p>	
+		<label for="slider-mini">Input Your Progress for This Assignment </label>
+		<input type="range" name="slider-mini" id="slider-mini" value="25" min="0" max="100" data-highlight="true" data-mini="true" />
+		<p><a href="study_partner_list.php" data-role="button" data-theme="b">Submit</a></p>	
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
