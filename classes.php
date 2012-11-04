@@ -51,10 +51,11 @@ header("location:index.php");
 		
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="profile.php" id="key" data-icon="custom">Profile</a></li>
+				<li><a href="profile.php" id="key" data-icon="custom" >Profile</a></li>
+				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>
 	</div>
