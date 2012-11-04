@@ -39,7 +39,7 @@ header("location:index.php");
 		<p></p>	
 		<label for="slider-mini">Input Your Progress for This Assignment </label>
 		<input type="range" name="slider-mini" id="slider-mini" value="25" min="0" max="100" data-highlight="true" data-mini="true" />
-		<p><a href="#" data-role="button" data-theme="b">Submit</a></p>	
+		<p><a href="study_partner_list.php" data-role="button" data-theme="b">Submit</a></p>	
 	</div><!-- /content -->
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
