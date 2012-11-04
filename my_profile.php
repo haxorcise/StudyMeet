@@ -4,6 +4,7 @@ if(!session_is_registered(id)){
 header("location:index.php");
 }
 ?>
+// This is a test edit 
 <!DOCTYPE html> 
 <html>
 <head>
@@ -34,18 +35,36 @@ header("location:index.php");
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>Here are your available classes:</p>	
-		<?php 				
+		<p>This is your profile</p>	
+		
+		<?php 
 		include("config.php");
 		$id = $_SESSION['id'];
-		$query = "SELECT * FROM Classes WHERE User_ID = '$id'";
+		//$id = $_GET['id'];
+		$query = "SELECT * FROM users WHERE Id = '$id'";
 		$result = mysql_query($query);
-		//echo $result["Class"];
 		
-		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'assignments.php?Class='.$row["Class"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-		}
+		
+		
+		echo "<b><center>User Profile</center></b><br><br>";
+		
+		$first_name=mysql_result($result,$i,"first_name");
+		$last_name=mysql_result($result,$i,"last_name");
+		$gender=mysql_result($result,$i,"gender");
+		$year=mysql_result($result,$i,"year");
+		$major=mysql_result($result,$i,"major");
+		$res=mysql_result($result,$i,"res");
+		$email=mysql_result($result,$i,"email");
+		
+		echo "<b>$first_name 
+$last_name</b><br><hr>$gender<br>$year<br>$major<br>$res<br>$email<hr><br>";
+		
+		
+		//while ($row = mysql_fetch_assoc($result)) {
+			//echo $row["email"];
+			//$redirect = 'assignments.php?Class='.$row["Class"];
+			//echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
+		//}
 
 		?>
 		
@@ -54,7 +73,7 @@ header("location:index.php");
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="a">
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="study_partner_list.php" id="key" data-icon="custom">Profile</a></li>
+				<li><a href="profile.php" id="key" data-icon="custom">Profile</a></li>
 			</ul>
 		</div>
 	</div>
