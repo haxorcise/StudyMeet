@@ -44,7 +44,7 @@
 	
 		
 	<div id="info">
-		<p>To log in, enter username <b>"test"</b> and password <b>"test"</b>. "This is just a demo page!</p>
+		<p>To log in, enter <b>your first name</b> as the username and password <b>"test"</b>. If your first name doesn't work, use "greg"</p>
 	</div>	
 	</div><!-- /content -->
 	

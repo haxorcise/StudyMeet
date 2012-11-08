@@ -11,7 +11,7 @@ $result = mysql_query($query);
 		$current=$row["Class"];
 		if ($current == $search){
 			$id=$_SESSION['id'];
-			mysql_query("INSERT INTO Classes VALUES ('$id', '$current')");
+			mysql_query("INSERT INTO Classes VALUES ('" . $id . "', '" . $current. "')");
 			header('Location:classes.php');
 		}
 	}

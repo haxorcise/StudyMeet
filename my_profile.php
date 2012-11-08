@@ -4,7 +4,6 @@ if(!session_is_registered(id)){
 header("location:index.php");
 }
 ?>
-// This is a test edit 
 <!DOCTYPE html> 
 <html>
 <head>
@@ -29,13 +28,12 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="logout.php" data-icon="back" id="log_out" class="ui-btn-left">logout</a>
+		<a href="classes.php" data-icon="back" id="back" class="ui-btn-left">Back</a>
 		<h1>StudyMeet</h1>
+		<a href="logout.php" data-icon="delete" id="log_out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<h2>Find a Study Group!</h2>
-		<p>This is your profile</p>	
 		
 		<?php 
 		include("config.php");
@@ -46,7 +44,7 @@ header("location:index.php");
 		
 		
 		
-		echo "<b><center>User Profile</center></b><br><br>";
+		echo "<b><center>Your Profile</center></b><br><br>";
 		
 		$first_name=mysql_result($result,$i,"first_name");
 		$last_name=mysql_result($result,$i,"last_name");
@@ -72,8 +70,8 @@ $last_name</b><br><hr>$gender<br>$year<br>$major<br>$res<br>$email<hr><br>";
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
 			<ul>
-				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
-				<li><a href="my_profile.php" id="key" data-icon="custom" >Profile</a></li>
+				<li><a href="classes.php" id="home" data-icon="custom" >Classes</a></li>
+				<li><a href="my_profile.php" id="key" data-icon="custom" class="ui-btn-active" >Profile</a></li>
 				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>
