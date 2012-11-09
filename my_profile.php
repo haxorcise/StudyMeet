@@ -28,9 +28,8 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="classes.php" data-icon="back" id="back" class="ui-btn-left">Back</a>
 		<h1>StudyMeet</h1>
-		<a href="logout.php" data-icon="delete" id="log_out" class="ui-btn-right">Logout</a>
+		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -54,8 +53,18 @@ header("location:index.php");
 		$res=mysql_result($result,$i,"res");
 		$email=mysql_result($result,$i,"email");
 		
+		
+		
 		echo "<b>$first_name 
 $last_name</b><br><hr>$gender<br>$year<br>$major<br>$res<br>$email<hr><br>";
+		
+		?>
+		
+		
+		
+		<form><input type="button" value="Edit Profile" onClick="window.location.href='edit_profile.php'"></form>
+		
+		<?php
 		
 		
 		//while ($row = mysql_fetch_assoc($result)) {
@@ -72,7 +81,7 @@ $last_name</b><br><hr>$gender<br>$year<br>$major<br>$res<br>$email<hr><br>";
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" >Classes</a></li>
 				<li><a href="my_profile.php" id="key" data-icon="custom" class="ui-btn-active" >Profile</a></li>
-				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
+				<li><a href="messages.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>
 	</div>

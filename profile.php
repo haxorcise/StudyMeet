@@ -39,11 +39,13 @@ header("location:index.php");
 		<?php 
 		include("config.php");
 		//$id = $_SESSION['id'];
-		$id = $_GET['id'];
-		$query = "SELECT * FROM users WHERE Id = '$id'";
+		
+		$from_id = $_SESSION['id'];
+		$to_id = $_GET['id'];
+		$query = "SELECT * FROM users WHERE Id = '$to_id'";
 		$result = mysql_query($query);
 		
-		
+		$_SESSION['curr_to_id'] = $to_id;
 		
 		echo "<b><center>User Profile</center></b><br><br>";
 		
@@ -68,6 +70,16 @@ $last_name</b><br><hr>$gender<br>$year<br>$major<br>$res<br>$email<hr><br>";
 		?>
 		
 	</div><!-- /content -->
+	
+	<div id="form">
+	<form action="submit_message.php" method="post">
+	<p><label for="message">Message</label>
+		<input type="text" name="message" maxlength="140"></p>
+
+		<input class="submit" type="submit" value="Send">
+	</form>
+</div>
+	
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
 			<ul>

@@ -40,18 +40,21 @@ header("location:index.php");
 		$result = mysql_query($query);
 		$num_rows = mysql_num_rows($result);
 		
-		echo '<h2>Find a Study Group!</h2>';
+		echo "<h2>Find a Study Group!</h2>";
 
 		if ($num_rows > 0) {
-			echo '<p>Here are your available classes:</p>';
+			echo "<p class='available'>Here are your available classes:</p>";
+			echo "<ul data-role='listview' data-split-icon='delete'>";
 			while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'assignments.php?Class='.$row["Class"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Class"]."</a></p>";
-		}
-			echo "Want to add a class?<a href='addclass.php' data-role='button' data-theme='b'>Add A Class</a>";
+				$assignments_redirect = 'assignments.php?Class='.$row["Class"];
+				$delete_class_check_redirect = 'delete_class_check.php?Class='.$row["Class"];
+				echo "<li><a href='$assignments_redirect' data-theme='b'>".$row["Class"]."</a><a href='$delete_class_check_redirect' data-rel='dialogue' >Delete</a></li>";
+			}
+			echo "</ul>";
+			echo "<br /><br />Want to add a class?<a href='addclass.php' data-role='button' data-theme='b'>Add A Class</a>";
 		} else {
-			echo '<p>You have not added any classes :(</p>';
-			echo "Want to add a class?<a href='addclass.php' data-role='button' data-theme='b'>Add A Class</a>";
+			echo "<p class='available'>You have not added any classes :(</p>";
+			echo "<a href='addclass.php' data-role='button' data-theme='b'>Add A Class</a>";
 		}
 		?>
 	</div><!-- /content -->
@@ -60,7 +63,7 @@ header("location:index.php");
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
 				<li><a href="my_profile.php" id="key" data-icon="custom" >Profile</a></li>
-				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
+				<li><a href="messages.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>
 	</div>

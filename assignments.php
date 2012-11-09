@@ -34,9 +34,6 @@ header("location:index.php");
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<h2>Find a Study Group!</h2>
-		<p>Here are your available assignments:</p>	
-		
 		<?php 
 		$_SESSION['currclass'] = $_GET['Class'];
 		
@@ -45,12 +42,14 @@ header("location:index.php");
 		$query = "SELECT * FROM assignments WHERE Class = '$currclass'";
 		$result = mysql_query($query);
 		//echo $result["Class"];
-		
+		echo "<h2>Find a Study Group!</h2>";
+		echo "<p class='available'>Here are your available assignments:</p>";
+		echo "<ul data-role='listview' data-split-icon='delete'>";
 		while ($row = mysql_fetch_assoc($result)) {
-			$redirect = 'done.php?Assignment='.$row["Assignments"];
-			echo "<a href='$redirect' data-role='button' data-theme='b'>".$row["Assignments"]."</a></p>";
+			$assignments_redirect = 'done.php?Assignment='.$row["Assignments"];
+			echo "<li><a href='$assignments_redirect' data-theme='b'>".$row["Assignments"]."</a></li>";
 		}
-		
+		echo "</ul>";
 		?>
 		
 		
@@ -60,7 +59,7 @@ header("location:index.php");
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
 				<li><a href="profile.php" id="key" data-icon="custom" >Profile</a></li>
-				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
+				<li><a href="messages.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>
 	</div>

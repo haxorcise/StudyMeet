@@ -21,6 +21,7 @@ if ($num_rows == 1) {
 	$_SESSION['name']="name";
 	header('Location:classes.php');
 }
+}
 ?>
 <!DOCTYPE html> 
 <html>
@@ -43,13 +44,26 @@ if ($num_rows == 1) {
 <div data-role="page">
 	<div data-role="header">
 		<h1>StudyMeet</h1>
-		<a href="logout.php" data-icon="delete" data-iconpos="right"  id="log-out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
-	<div data-role="content">	
-<?php
-	echo "<p>Wrong Username or Password</p>";
-}	
-?>
+
+	<div data-role="content">
+		<?php
+		echo "<p>You have entered an incorrect username and/or password. Please try again.</p>";	
+		?>
+		<form action="checklogin.php" method="post">
+			<label for="foo">Username:</label>
+			<input type="text" name="username" id="foo" />
+			<label for="bar">Password:</label>
+			<input type="password" name="password" id="bar" />
+		    <input type="submit" value="Login" />
+		</form>	
+		
+		<div data-role="fieldcontain">
+			To log in, enter your username and password.
+		</div>	
+		<div id="info">
+			<a href='adduser.php' data-role='button'>Don't have a username?</a>
+		</div>	
 	</div><!-- /content -->
 
 

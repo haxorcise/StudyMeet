@@ -40,11 +40,10 @@
 			</form>	
 			
 		<div data-role="fieldcontain">
+			To log in, enter your username and password.
 		</div>	
-	
-		
 	<div id="info">
-		<p>To log in, enter <b>your first name</b> as the username and password <b>"test"</b>. If your first name doesn't work, use "greg"</p>
+		<a href='adduser.php' data-role='button'>Don't have a username?</a>
 	</div>	
 	</div><!-- /content -->
 	

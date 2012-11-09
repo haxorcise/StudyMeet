@@ -5,16 +5,21 @@ header('Location:index.php');
 } else {
 include('config.php');
 $search=$_POST['search'];
-$query = "SELECT * FROM Main_Classes";
-$result = mysql_query($query);		
-	while ($row = mysql_fetch_assoc($result)){
-		$current=$row["Class"];
-		if ($current == $search){
-			$id=$_SESSION['id'];
-			mysql_query("INSERT INTO Classes VALUES ('" . $id . "', '" . $current. "')");
-			header('Location:classes.php');
-		}
+$id=$_SESSION['id'];
+$query = "SELECT * FROM Main_Classes WHERE Class='$search'";
+$result = mysql_query($query);
+$num_rows = mysql_num_rows($result);
+if ($num_rows > 0) {
+	$checkQuery = "SELECT * FROM Classes WHERE User_ID='$id' AND Class='$search'";
+	$checkResult = mysql_query($checkQuery);
+	$num_rows2 = mysql_num_rows($checkResult);
+	if ($num_rows2 == 0) {
+		mysql_query("INSERT INTO Classes VALUES (NULL,'$id', '$search')");
+		header('Location:classes.php');
+	} else {
+		header('Location:classes.php');
 	}
+}
 }	
 ?>
 <!DOCTYPE html> 

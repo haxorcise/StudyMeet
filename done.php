@@ -3,6 +3,7 @@ session_start();
 if(!session_is_registered(id)){
 header("location:index.php");
 }
+$currclass=$_SESSION['currclass'];
 ?>
 <!DOCTYPE html> 
 <html>
@@ -29,7 +30,7 @@ header("location:index.php");
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<a href="classes.php" data-icon="back" id="back" class="ui-btn-left">Classes</a>
+		<?php echo "<a href='assignments.php?Class=$currclass' data-icon='back' id='back' class='ui-btn-left'>Back</a>";?>
 		<h1>StudyMeet</h1>
 		<a href="logout.php" data-icon="delete" id="log_out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
@@ -46,7 +47,7 @@ header("location:index.php");
 			<ul>
 				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
 				<li><a href="profile.php" id="key" data-icon="custom" >Profile</a></li>
-				<li><a href="classes.php" id="email" data-icon="custom" >Messages</a></li>
+				<li><a href="messages.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
 		</div>
 	</div>

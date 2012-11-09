@@ -2,9 +2,18 @@
 session_start();
 if(!session_is_registered(id)){
 header("location:index.php");
+} else {
+	include("config.php");
+		
+	$from_id = $_SESSION['id'];
+	$to_id = $_SESSION['curr_to_id'];
+	$message = $_POST["message"];
+
+	$query2 = "INSERT INTO messages values ('$from_id', '$to_id', '$message')";
+	$result2 = mysql_query($query2);
+	header("location:classes.php");
 }
 ?>
-// This is a test edit 
 <!DOCTYPE html> 
 <html>
 <head>
@@ -23,55 +32,30 @@ header("location:index.php");
 	<script src="jquery.mobile-1.2.0.js"></script>
 
 </head>  
-<body> <!-- /contentstart -->
+<body> 
+
+<!-- Start of first page: #one -->
 <div data-role="page" id="one" data-add-back-btn="true">
 
 	<div data-role="header">
-		<?php echo "<a href='assignments.php?Class=$currclass' data-icon='back' id='back' class='ui-btn-left'>Back</a>";?>
+		<a href="classes.php" data-icon="back" id="back" class="ui-btn-left">Classes</a>
 		<h1>StudyMeet</h1>
-		<a href="logout.php" data-iconpos="right" data-icon="delete" id="log_out" class="ui-btn-right">logout</a>
+		<a href="logout.php" data-icon="delete" id="log_out" class="ui-btn-right">Logout</a>
 	</div><!-- /header -->
 
 	<div data-role="content">	
 		<h2>Find a Study Group!</h2>
-		<p>These are your peers also working on this assignment!:</p>	
 		
 		<?php 
-		include("config.php");
-		$id = $_SESSION['id'];
-		
-		$query="SELECT * FROM users";
-			$result=mysql_query($query);
-			$num=mysql_numrows($result);
-		
-		//mysql_close();
 
-		echo "<b><center>Available Study Partners</center></b><br><br>";
-		
-		$i=0;
-		while ($i < $num) {
-		
-		$first_name=mysql_result($result,$i,"first_name");
-		$last_name=mysql_result($result,$i,"last_name");
-		$res=mysql_result($result,$i,"res");
-		$id=mysql_result($result, $i, "Id");
-		
-		$redirect = 'profile.php?id='.$id;
-		echo "<a href='$redirect' data-role='button' data-theme='b'> send message</a></p>";
-		echo "<b>$first_name 
-		$last_name</b><br>$res<br>50% done<hr><br>";
-		
-		
-		$i++;
-		}
 		?>
-
-
-</div><!-- /content -->
+		
+	</div><!-- /content -->
+		
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar" class="nav-glyphish-example" data-grid="b">
 			<ul>
-				<li><a href="classes.php" id="home" data-icon="custom" class="ui-btn-active">Classes</a></li>
+				<li><a href="classes.php" id="home" data-icon="custom">Classes</a></li>
 				<li><a href="my_profile.php" id="key" data-icon="custom" >Profile</a></li>
 				<li><a href="messages.php" id="email" data-icon="custom" >Messages</a></li>
 			</ul>
